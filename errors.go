@@ -6,6 +6,8 @@ import (
 	"runtime/debug"
 )
 
+const ERROR_MISSING_REQUIRED string = "error missing required values"
+
 type AppError struct {
 	Inner      error
 	Message    string
