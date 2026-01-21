@@ -14,7 +14,7 @@ type AppError struct {
 	StackTrace string
 }
 
-func NewAppError(errMsg string, msgArgs ...interface{}) AppError {
+func NewAppError(errMsg string, msgArgs ...any) AppError {
 	errMsg = fmt.Sprintf(errMsg, msgArgs...)
 	return AppError{
 		Inner:      errors.New(errMsg),
@@ -23,9 +23,9 @@ func NewAppError(errMsg string, msgArgs ...interface{}) AppError {
 	}
 }
 
-func WrapError(err error, msgf string, msgArgs ...interface{}) AppError {
+func WrapError(err error, msgf string, msgArgs ...any) AppError {
 	errMsg := err.Error()
-	if errMsg != "" {
+	if msgf != "" {
 		errMsg = fmt.Sprintf(msgf, msgArgs...)
 	}
 	return AppError{
